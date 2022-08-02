@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: todo_app
+    volumes:
+      - /Users/jonathankeam/dev/projects/quarkus/quarkus-todo/db_data:/var/lib/postgresql/data
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
